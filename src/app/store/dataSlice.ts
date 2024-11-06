@@ -38,7 +38,7 @@ export interface AddProduct {
   productName: string;
   productDescription: string;
   productPrice: number;
-  productTotalStockQty: number;
+  productTotalStock: number;
   productImageUrl: null;
   categoryId: string;
 }
@@ -140,7 +140,11 @@ export const addProduct = (data: AddProduct) => {
   return async (dispatch: AppDispatch) => {
     dispatch(setStatus(Status.LOADING));
     try {
-      const response = await APIauthenticated.post("/admin/product", data);
+      const response = await APIauthenticated.post("/admin/product", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (response.status === 200) {
         dispatch(setStatus(Status.SUCCESS));

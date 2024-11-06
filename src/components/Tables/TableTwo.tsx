@@ -66,10 +66,12 @@ const Products = () => {
             <div className="col-span-3 flex items-center">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="h-12.5 w-15 rounded-md">
-                  <img
-                    src={`${product.productImageUrl}` || ""}
-                    // width={60}
-                    // height={50}
+                  <Image
+                    src={`http://localhost:4000/images/${product.productImageUrl}`}
+                    width={40}
+                    height={40}
+                    // src={`${product.productImageUrl}` || ""}
+
                     alt="Product"
                     className="h-10 w-10"
                   />

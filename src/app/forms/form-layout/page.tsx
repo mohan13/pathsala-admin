@@ -24,7 +24,7 @@ const AddProducts = () => {
     productName: "",
     productPrice: 0,
     productDescription: "",
-    productTotalStockQty: 0,
+    productTotalStock: 0,
     categoryId: "",
     productImageUrl: null,
   });
@@ -42,12 +42,7 @@ const AddProducts = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("formdata", formData);
-    // await dispatch(addProduct(formData));
-    // if (Status.SUCCESS === status) {
-    //   redirect("/tables");
-    // } else {
-    //   redirect("/forms/form-layout");
-    // }
+    await dispatch(addProduct(formData));
   };
 
   return (
@@ -108,7 +103,7 @@ const AddProducts = () => {
                 />
                 <Input
                   label="Stock"
-                  name="productTotalStockQty"
+                  name="productTotalStock"
                   onChange={handleChange}
                   type="number"
                 />
