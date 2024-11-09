@@ -1,8 +1,12 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks/hooks";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { OrderStatus } from "@/app/types/data";
-import { handleOrderStatusById, singleOrder } from "@/app/store/dataSlice";
+import { OrderStatus, PaymentStatus } from "@/app/types/data";
+import {
+  handleOrderStatusById,
+  singleOrder,
+  handlePaymentStatusById,
+} from "@/app/store/dataSlice";
 import { socket } from "@/app/provider";
 
 const SingleOrder = ({ params }: { params: { id: string } }) => {
@@ -14,6 +18,9 @@ const SingleOrder = ({ params }: { params: { id: string } }) => {
 
   const [orderStatus, setOrderStatus] = useState(
     order?.Order?.orderStatus as string,
+  );
+  const [paymentStatus, setPaymentStatus] = useState(
+    order?.Order?.Payment.paymentStatus as string,
   );
 
   useEffect(() => {
@@ -34,6 +41,20 @@ const SingleOrder = ({ params }: { params: { id: string } }) => {
     }
   };
 
+  const handlePaymentStatus = (e: ChangeEvent<HTMLSelectElement>) => {
+    setPaymentStatus(e.target.value);
+
+    if (id) {
+      socket.emit("updatePaymentStatus", {
+        status: e.target.value,
+        orderId: id,
+        userId: order.Order.userId,
+      });
+      dispatch(handlePaymentStatusById(e.target.value as PaymentStatus, id));
+    }
+  };
+
+  console.log("payment", order?.Order?.Payment?.paymentStatus);
   return (
     <div className="px-4 py-20 2xl:container md:px-6 2xl:mx-auto 2xl:px-20">
       <div className="item-start flex flex-col justify-start space-y-5">
@@ -210,6 +231,7 @@ const SingleOrder = ({ params }: { params: { id: string } }) => {
                       Select Payment Status
                     </label>
                     <select
+                      onChange={handlePaymentStatus}
                       id="countries"
                       className="bg-gray-50 border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 block w-full rounded-lg border p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     >

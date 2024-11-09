@@ -12,6 +12,12 @@ export enum PaymentMethod {
   Khalti = "khalti",
 }
 
+export enum PaymentStatus {
+  Paid = "paid",
+  Unpaid = "unpaid",
+  Pending = "pending",
+}
+
 export enum OrderStatus {
   Pending = "pending",
   Delivered = "delivered",
