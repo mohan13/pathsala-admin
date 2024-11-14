@@ -8,6 +8,7 @@ import { deleteProduct, fetchProducts } from "@/app/store/dataSlice";
 import { Status } from "@/app/types/status";
 import toast from "react-hot-toast";
 import { resetStatus } from "@/app/store/authSlice";
+import { format } from "date-fns";
 
 const Products = () => {
   const dispatch = useAppDispatch();
@@ -25,8 +26,6 @@ const Products = () => {
     toast.success("Product delete Successfully!");
     dispatch(resetStatus());
   }
-
-  console.log("products", products);
 
   return (
     <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -93,11 +92,13 @@ const Products = () => {
             </div>
             <div className="col-span-1 flex items-center">
               <p className="text-sm text-black dark:text-white">
-                {product.productTotalStockQty}
+                {product.productTotalStock}
               </p>
             </div>
             <div className="col-span-1 flex items-center">
-              <p className="text-sm text-meta-3">{product.createdAt}</p>
+              <p className="text-sm text-meta-3">
+                {format(String(product.updatedAt), "PPP")}
+              </p>
             </div>
             <div className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
               <div className="flex items-center space-x-3.5">
@@ -122,7 +123,7 @@ const Products = () => {
                 </button>
                 <button
                   onClick={() => handleDelete(product.id)}
-                  className="hover:text-primary"
+                  className="hover:text-red"
                 >
                   <svg
                     className="fill-current"

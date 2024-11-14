@@ -3,16 +3,17 @@
 import { fetchUsers } from "@/app/store/dataSlice";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks/hooks";
 import { BRAND } from "@/types/brand";
+import { format } from "date-fns";
 import Image from "next/image";
 import { useEffect } from "react";
 
 export const Users = () => {
   const dispatch = useAppDispatch();
-  const { status, users } = useAppSelector((state) => state.datas);
+  const { users } = useAppSelector((state) => state.datas);
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-  console.log("users", users);
+
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -32,6 +33,11 @@ export const Users = () => {
           <div className="p-2.5 text-center xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
               Email
+            </h5>
+          </div>{" "}
+          <div className="p-2.5 text-center xl:p-5">
+            <h5 className="text-sm font-medium uppercase xsm:text-base">
+              Role
             </h5>
           </div>
           <div className="hidden p-2.5 text-center sm:block xl:p-5">
@@ -61,15 +67,20 @@ export const Users = () => {
               </div>
 
               <div className="flex items-center justify-center p-2.5 xl:p-5">
-                <p className="text-black dark:text-white">{brand.email}K</p>
+                <p className="text-black dark:text-white">{brand.email}</p>
               </div>
 
               <div className="flex items-center justify-center p-2.5 xl:p-5">
                 <p className="capitalize text-meta-3">{brand.username}</p>
               </div>
+              <div className="flex items-center justify-center p-2.5 xl:p-5">
+                <p className="capitalize text-meta-3">{brand.role}</p>
+              </div>
 
               <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-                <p className="text-black dark:text-white">{brand.updatedAt}</p>
+                <p className="text-black dark:text-white">
+                  {format(brand.updatedAt, "PPP")}
+                </p>
               </div>
             </div>
           ))}

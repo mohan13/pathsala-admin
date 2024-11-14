@@ -9,10 +9,11 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { addProduct, fetchCategories, AddProduct } from "@/app/store/dataSlice";
 import { Category } from "@/app/types/data";
 import { Status } from "@/app/types/status";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const AddProducts = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const { status } = useAppSelector((state) => state.datas);
   const { categories } = useAppSelector((state) => state.datas);
 
@@ -41,8 +42,9 @@ const AddProducts = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("formdata", formData);
+
     await dispatch(addProduct(formData));
+    router.push("/tables");
   };
 
   return (

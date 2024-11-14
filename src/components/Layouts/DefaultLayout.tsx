@@ -22,7 +22,7 @@ export default function DefaultLayout({
   return (
     <>
       <div className="flex">
-        <Toaster />
+        {/* <Toaster /> */}
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <div className="relative flex flex-1 flex-col lg:ml-72.5">

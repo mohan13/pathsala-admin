@@ -4,6 +4,7 @@ export interface User {
   id: string;
   email: string;
   username: string;
+  role: string;
   updatedAt: string;
 }
 
@@ -39,7 +40,10 @@ export interface OrderData {
   phoneNumber: string;
   shippingAddress: string;
   totalAmount: number;
-  paymentDetails: Payment;
+  Payment: {
+    paymentMethod: string;
+    paymentStatus: string;
+  };
   item: ItemDetails[];
   id: string;
   orderStatus: OrderStatus;
@@ -55,7 +59,7 @@ export interface Product {
   productName: string;
   productDescription: string;
   productPrice: number;
-  productTotalStockQty: number;
+  productTotalStock: number;
   productImageUrl: string;
   createdAt?: string;
   updatedAt?: string;

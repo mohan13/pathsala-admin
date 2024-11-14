@@ -41,7 +41,7 @@ const TableFour: React.FC = () => {
                 id
               </th>
               <th className="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white">
-                category Name
+                Category Name
               </th>
 
               <th className="px-4 py-4 font-medium text-black dark:text-white">
@@ -62,7 +62,7 @@ const TableFour: React.FC = () => {
 
                   <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                     <div className="flex items-center space-x-3.5">
-                      <button className="hover:text-primary">
+                      {/* <button className="hover:text-primary">
                         <svg
                           className="fill-current"
                           width="18"
@@ -80,10 +80,10 @@ const TableFour: React.FC = () => {
                             fill=""
                           />
                         </svg>
-                      </button>
+                      </button> */}
                       <button
                         onClick={() => handleDelete(category.id)}
-                        className="hover:text-primary"
+                        className="hover:text-red"
                       >
                         <svg
                           className="fill-current"
@@ -111,7 +111,7 @@ const TableFour: React.FC = () => {
                           />
                         </svg>
                       </button>
-                      <button className="hover:text-primary">
+                      {/* <button className="hover:text-primary">
                         <svg
                           className="fill-current"
                           width="18"
@@ -129,7 +129,7 @@ const TableFour: React.FC = () => {
                             fill=""
                           />
                         </svg>
-                      </button>
+                      </button> */}
                     </div>
                   </td>
                 </tr>

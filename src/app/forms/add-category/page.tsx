@@ -35,13 +35,8 @@ const AddCategory = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await dispatch(addCategory(data));
-    if (status === Status.SUCCESS) {
-      toast.success("Category added successfully!!");
-      dispatch(resetStatus());
-      redirect("/tables");
-    } else {
-      redirect("/forms/add-category");
-    }
+    toast.success("Category added successfully!!");
+    dispatch(resetStatus());
   };
 
   return (
