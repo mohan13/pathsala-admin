@@ -54,7 +54,6 @@ const SingleOrder = ({ params }: { params: { id: string } }) => {
     }
   };
 
-  console.log("payment", order?.Order?.Payment?.paymentStatus);
   return (
     <div className="px-4 py-20 2xl:container md:px-6 2xl:mx-auto 2xl:px-20">
       <div className="item-start flex flex-col justify-start space-y-5">
