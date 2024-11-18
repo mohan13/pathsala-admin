@@ -59,10 +59,10 @@ function login(data: LoginData) {
     try {
       const response = await API.post("/auth/login", data);
       if (response.status === 200) {
-        const { data } = response.data;
+        const { token } = response.data;
         dispatch(setStatus(Status.SUCCESS));
-        dispatch(setToken(data));
-        localStorage.setItem("token", data);
+        dispatch(setToken(token));
+        localStorage.setItem("token", token);
       } else {
         dispatch(setStatus(Status.FAILURE));
       }
